@@ -1,0 +1,13 @@
+name: Desplegar sitio web en AWS S3 y CloudFront
+
+on:
+  push:
+    branches:
+      - main # ejecutar el despliegue cuando se hace un push al branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ejemplo
+        run: echo "Hola mundo"
