@@ -1,26 +1,15 @@
-name: Desplegar sitio web en AWS S3 y CloudFront
+name: Desplegar sitio web en AWS S3 Y CloudFront
 
 on:
-  push:
-    branches:
-      - main # ejecutar el despliegue cuando se hace un push al branch main
+    push:
+        branches:
+        - main # Ejecutar el despliegue cuando se haga un push a la rama main
+
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Configurar AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: sincronizar con S3
-        run: aws s3 sync ./ s3://${{ secrets.S3_BUCKET }}/ --exclude ".git/*" --exclude "./github/*" --exclude ".gitignore" --delete
-
-      - name: invalidar CloudFront
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to S3
+            run: echo "Deploying to S3"
+      
